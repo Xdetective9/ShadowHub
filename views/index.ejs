@@ -1,0 +1,66 @@
+<%- include('layouts/main', { 
+    body: `
+<section class="hero">
+    <h1 class="animate-gradient">ShadowHub Platform</h1>
+    <p style="font-size:1.25rem;color:#94a3b8;margin-bottom:2.5rem">
+        Modular • Auto-Loading • Beautiful • Powerful
+    </p>
+    <div class="hero-buttons">
+        <a href="/plugins" class="btn">🧩 Explore Plugins</a>
+        <% if (typeof user === 'undefined' || !user) { %>
+            <a href="/auth/signup" class="btn btn-outline">✨ Get Started</a>
+        <% } else { %>
+            <a href="/admin" class="btn btn-outline">⚙️ Dashboard</a>
+        <% } %>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card glass animate-on-scroll">
+        <div class="feature-icon">🔌</div>
+        <h3>Auto Plugin System</h3>
+        <p style="color:#94a3b8">Drop a plugin folder in <code style="background:rgba(255,255,255,0.1);padding:0.2rem 0.4rem;border-radius:4px">/plugins</code> and it loads instantly. No config needed.</p>
+    </div>
+    
+    <div class="feature-card glass animate-on-scroll" style="animation-delay:0.1s">
+        <div class="feature-icon">⚡</div>
+        <h3>Blazing Performance</h3>
+        <p style="color:#94a3b8">Optimized with compression, caching, and rate limiting. Built for speed.</p>
+    </div>
+    
+    <div class="feature-card glass animate-on-scroll" style="animation-delay:0.2s">
+        <div class="feature-icon">🎨</div>
+        <h3>Unique Designs</h3>
+        <p style="color:#94a3b8">Each plugin can have its own UI, animations, and style. Express your creativity.</p>
+    </div>
+    
+    <div class="feature-card glass animate-on-scroll" style="animation-delay:0.3s">
+        <div class="feature-icon">🔐</div>
+        <h3>Secure by Default</h3>
+        <p style="color:#94a3b8">Helmet, rate limiting, session protection, and JSON database with file locking.</p>
+    </div>
+    
+    <div class="feature-card glass animate-on-scroll" style="animation-delay:0.4s">
+        <div class="feature-icon">🌐</div>
+        <h3>Deploy Anywhere</h3>
+        <p style="color:#94a3b8">Works on Render, Railway, Vercel, Pterodactyl, or any Node.js host.</p>
+    </div>
+    
+    <div class="feature-card glass animate-on-scroll" style="animation-delay:0.5s">
+        <div class="feature-icon">🤖</div>
+        <h3>Bot Ready</h3>
+        <p style="color:#94a3b8">Built-in support for WhatsApp, Telegram, and AI bot hosting plugins.</p>
+    </div>
+</section>
+
+<div style="text-align:center;padding:3rem 0">
+    <a href="https://github.com/Xdetective9/ShadowCore" target="_blank" class="btn btn-outline">
+        📦 View on GitHub
+    </a>
+</div>
+    `,
+    currentPage: 'home',
+    ownerName: process.env.OWNER_NAME,
+    ownerNumber: process.env.OWNER_NUMBER,
+    ownerTagline: process.env.OWNER_TAGLINE
+}) %>
