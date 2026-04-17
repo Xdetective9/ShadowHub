@@ -1,0 +1,13 @@
+{
+  "name": "Media Downloader",
+  "version": "1.0.0",
+  "description": "Download videos, images, and audio from various platforms",
+  "author": "Abdullah",
+  "icon": "⬇️",
+  "enabled": true,
+  "route": "/plugins/downloader",
+  "settings": {
+    "maxSize": "500MB",
+    "formats": ["mp4", "mp3", "jpg", "png"]
+  }
+}
