@@ -1,0 +1,2 @@
+# This file ensures the data/ folder is tracked by Git
+# Actual data files (users.json, plugins.json) are gitignored for security
