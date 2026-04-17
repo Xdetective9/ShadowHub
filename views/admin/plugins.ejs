@@ -1,0 +1,102 @@
+<%- include('../layouts/main', { 
+    body: `
+<div class="admin-header glass">
+    <div>
+        <h2>Plugin Manager</h2>
+        <p style="color:#94a3b8">Enable, disable, or remove plugins</p>
+    </div>
+    <a href="/admin" class="btn btn-outline">← Dashboard</a>
+</div>
+
+<div class="plugins-grid">
+    <% if (typeof plugins !== 'undefined' && plugins.length > 0) { %>
+        <% plugins.forEach(plugin => { %>
+            <div class="plugin-card glass">
+                <div class="plugin-header">
+                    <span class="plugin-icon"><%= plugin.icon || '🧩' %></span>
+                    <div>
+                        <strong><%= plugin.name %></strong>
+                        <div style="font-size:0.85rem;color:#94a3b8">v<%= plugin.version %></div>
+                    </div>
+                </div>
+                
+                <p style="color:#94a3b8;font-size:0.95rem"><%= plugin.description || 'No description' %></p>
+                
+                <div class="plugin-meta">
+                    <span>👤 <%= plugin.author || 'Unknown' %></span>
+                    <span>🔗 <%= plugin.route %></span>
+                </div>
+                
+                <div class="plugin-actions">
+                    <button class="btn btn-outline toggle-plugin" 
+                            data-id="<%= plugin.id %>" 
+                            data-enabled="<%= plugin.enabled %>"
+                            style="flex:1">
+                        <%= plugin.enabled ? '🔴 Disable' : '🟢 Enable' %>
+                    </button>
+                    <button class="btn btn-outline delete-plugin" 
+                            data-id="<%= plugin.id %>"
+                            style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3)">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <div class="glass" style="padding:3rem;text-align:center;grid-column:1/-1">
+            <p style="font-size:3rem;margin-bottom:1rem">🧩</p>
+            <p style="color:#94a3b8">No plugins installed yet.</p>
+            <p style="color:#64748b;font-size:0.9rem;margin-top:0.5rem">
+                Add plugins to the <code>/plugins</code> folder            </p>
+        </div>
+    <% } %>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Toggle plugin
+    document.querySelectorAll('.toggle-plugin').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const id = btn.dataset.id;
+            const enabled = btn.dataset.enabled === 'true';
+            
+            try {
+                const res = await fetch(`/admin/plugins/${id}/toggle`, {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({enabled: !enabled})
+                });
+                const data = await res.json();
+                if (data.success) {
+                    btn.dataset.enabled = (!enabled).toString();
+                    btn.textContent = !enabled ? '🔴 Disable' : '🟢 Enable';
+                    window.ShadowHub.showToast('Plugin updated', 'success');
+                }
+            } catch {
+                window.ShadowHub.showToast('Failed to update plugin', 'error');
+            }
+        });
+    });
+    
+    // Delete plugin
+    document.querySelectorAll('.delete-plugin').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            if (!confirm('Disable this plugin? (Folder will be kept)')) return;
+            
+            const id = btn.dataset.id;
+            try {
+                const res = await fetch(`/admin/plugins/${id}`, {method: 'DELETE'});
+                const data = await res.json();
+                if (data.success) {
+                    btn.closest('.plugin-card').remove();
+                    window.ShadowHub.showToast('Plugin disabled', 'success');
+                }
+            } catch {
+                window.ShadowHub.showToast('Failed to disable plugin', 'error');
+            }
+        });
+    });
+});</script>
+    `,
+    currentPage: 'admin-plugins'
+}) %>
