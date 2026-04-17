@@ -1,0 +1,51 @@
+<%- include('../layouts/main', { 
+    body: `
+<div class="admin-header glass">
+    <div>
+        <h2>Admin Dashboard</h2>
+        <p style="color:#94a3b8">Welcome back, <%= typeof user !== 'undefined' && user ? user.name : 'Admin' %></p>
+    </div>
+    <a href="/" class="btn btn-outline">← Back to Site</a>
+</div>
+
+<div class="admin-stats">
+    <div class="stat-card glass">
+        <div class="stat-value"><%= typeof stats !== 'undefined' ? stats.users : 0 %></div>
+        <div style="color:#94a3b8">Total Users</div>
+    </div>
+    <div class="stat-card glass">
+        <div class="stat-value"><%= typeof stats !== 'undefined' ? stats.plugins : 0 %></div>
+        <div style="color:#94a3b8">Active Plugins</div>
+    </div>
+    <div class="stat-card glass">
+        <div class="stat-value"><%= typeof stats !== 'undefined' ? Math.round(stats.uptime / 3600) : 0 %>h</div>
+        <div style="color:#94a3b8">Uptime</div>
+    </div>
+</div>
+
+<div style="padding:2rem">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <h3>Manage Plugins</h3>
+        <a href="/admin/plugins" class="btn">View All Plugins →</a>
+    </div>
+    
+    <div class="glass" style="padding:1.5rem">
+        <p style="color:#94a3b8;margin-bottom:1rem">
+            Plugins are auto-loaded from the <code style="background:rgba(255,255,255,0.1);padding:0.2rem 0.4rem;border-radius:4px">/plugins</code> folder.
+        </p>
+        <p style="color:#94a3b8">
+            To add a new plugin:
+        </p>
+        <ol style="margin-left:1.5rem;margin-top:0.5rem;color:#94a3b8">
+            <li>Create folder: <code>plugins/your-plugin-name</code></li>
+            <li>Add <code>plugin.json</code> manifest</li>
+            <li>Add <code>index.js</code> with routes</li>
+            <li>Server auto-reloads (or restart)</li>
+        </ol>
+    </div>
+</div>
+
+<%- include('../partials/admin-nav') %>
+    `,
+    currentPage: 'admin'
+}) %>
