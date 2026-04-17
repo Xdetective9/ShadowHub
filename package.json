@@ -1,0 +1,35 @@
+{
+  "name": "shadowhub",
+  "version": "2.0.0",
+  "description": "Modular Plugin Platform by Abdullah",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "postinstall": "mkdir -p data plugins public/css/plugins public/js/plugins views/plugins"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "express": "latest",
+    "ejs": "latest",
+    "express-session": "latest",
+    "connect-pg-simple": "latest",
+    "pg": "latest",
+    "dotenv": "latest",
+    "express-rate-limit": "latest",
+    "helmet": "latest",
+    "cors": "latest",
+    "morgan": "latest",
+    "compression": "latest",
+    "bcryptjs": "latest",
+    "uuid": "latest",
+    "fs-extra": "latest",
+    "chokidar": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
