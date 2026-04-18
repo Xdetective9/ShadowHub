@@ -4,9 +4,10 @@ services:
     env: node
     region: singapore
     plan: free
-    buildCommand: npm install
+    buildCommand: npm ci --omit=dev
     startCommand: npm start
     healthCheckPath: /health
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
@@ -19,4 +20,8 @@ services:
       - key: OWNER_NUMBER
         value: "+923288055104"
       - key: ADMIN_PASSWORD
-        value: Rana0986
+        sync: false  # Set manually in Render dashboard for security
+      - key: DATABASE_URL
+        sync: false  # Optional - leave blank for JSON-only mode
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: "200"
