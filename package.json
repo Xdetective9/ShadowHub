@@ -1,35 +1,36 @@
 {
   "name": "shadowhub",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Modular Plugin Platform by Abdullah",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "postinstall": "mkdir -p data plugins public/css/plugins public/js/plugins views/plugins"
+    "postinstall": "mkdir -p data plugins public/css/plugins public/js/plugins views/plugins && echo 'ShadowHub ready 🌑'"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
   },
   "dependencies": {
-    "express": "latest",
-    "ejs": "latest",
-    "express-session": "latest",
-    "connect-pg-simple": "latest",
-    "pg": "latest",
-    "dotenv": "latest",
-    "express-rate-limit": "latest",
-    "helmet": "latest",
-    "cors": "latest",
-    "morgan": "latest",
-    "compression": "latest",
-    "bcryptjs": "latest",
-    "uuid": "latest",
-    "fs-extra": "latest",
-    "chokidar": "latest"
+    "express": "4.21.0",
+    "ejs": "3.1.10",
+    "express-session": "1.18.0",
+    "connect-pg-simple": "10.0.0",
+    "pg": "8.12.0",
+    "dotenv": "16.4.5",
+    "express-rate-limit": "7.4.0",
+    "helmet": "7.1.0",
+    "cors": "2.8.5",
+    "morgan": "1.10.0",
+    "compression": "1.7.4",
+    "bcryptjs": "2.4.3",
+    "uuid": "10.0.0",
+    "fs-extra": "11.2.0",
+    "chokidar": "3.6.0"
   },
   "devDependencies": {
-    "nodemon": "latest"
+    "nodemon": "3.1.4"
   }
 }
